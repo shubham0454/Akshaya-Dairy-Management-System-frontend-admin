@@ -2,18 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { 
   Table, 
-  Badge, 
   Spinner, 
   Button, 
-  Modal, 
   Form, 
   Row, 
   Col,
   Card
 } from 'react-bootstrap';
-import { FiPlus, FiEdit, FiDollarSign, FiDroplet } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi';
 import { toast } from 'react-toastify';
-import { format } from 'date-fns';
 
 interface MilkPrice {
   id: string;
@@ -80,7 +77,7 @@ interface CenterCollectionData {
 }
 
 const MilkPrice = () => {
-  const [prices, setPrices] = useState<MilkPrice[]>([]);
+  const [_prices, setPrices] = useState<MilkPrice[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
@@ -852,6 +849,24 @@ const MilkPrice = () => {
       }
     }
   };
+
+  // Referenced by commented-out UI; keep for when modals are re-enabled
+  void ({
+    setShowModal,
+    setSelectedPrice,
+    showPreviewModal,
+    selectedPrice,
+    showCollectionModal,
+    editingCenter,
+    showEditPriceModal,
+    calculateNetPrice,
+    fetchExistingCollections,
+    handleCreate,
+    handlePreview,
+    handleEditCenterPrice,
+    handleSaveCenterPrice,
+    handleAddCollection,
+  });
 
   const resetCollectionForm = () => {
     setCollectionForm({

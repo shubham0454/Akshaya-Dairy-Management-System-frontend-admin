@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { FiDroplet, FiShield, FiTrendingUp, FiUsers, FiDollarSign } from 'react-icons/fi';
+import { FiDroplet, FiShield, FiTrendingUp, FiUsers } from 'react-icons/fi';
 
 const Login = () => {
   const [mobileOrEmail, setMobileOrEmail] = useState('');

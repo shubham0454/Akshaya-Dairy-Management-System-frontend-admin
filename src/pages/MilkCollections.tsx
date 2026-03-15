@@ -8,13 +8,25 @@ import {
   Form, 
   Row, 
   Col,
-  Modal,
-  InputGroup
+  Modal
 } from 'react-bootstrap';
 import Pagination from 'react-bootstrap/Pagination';
-import { FiFilter, FiRefreshCw, FiCheckCircle, FiXCircle, FiEdit, FiEye, FiSave, FiX } from 'react-icons/fi';
+import { FiFilter, FiRefreshCw, FiXCircle, FiEdit, FiEye, FiSave } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
+
+interface MilkSubType {
+  milk_weight?: number;
+  rate_per_liter?: number;
+  base_value?: number;
+  net_price?: number;
+  fat_percentage?: number;
+  snf_percentage?: number;
+  total_amount?: number;
+  collection_code?: string;
+  old_base_price?: number;
+  old_net_price?: number;
+}
 
 interface MilkCollection {
   id: string;
@@ -30,7 +42,7 @@ interface MilkCollection {
   total_amount: number;
   status: string;
   vendor_name?: string;
-  // vendor_id?: string; // Commented out - using center_id only
+  vendor_id?: string;
   driver_name?: string;
   center_id?: string;
   center_name?: string;
@@ -39,6 +51,8 @@ interface MilkCollection {
   net_price?: number;
   quality_notes?: string;
   comments?: string;
+  cow?: MilkSubType;
+  buffalo?: MilkSubType;
 }
 
 const MilkCollections = () => {
@@ -249,6 +263,7 @@ const MilkCollections = () => {
       toast.error(error.response?.data?.message || 'Failed to update status');
     }
   };
+  void handleUpdateStatus;
 
   const handleEditDataChange = (milkType: 'cow' | 'buffalo', field: string, value: string) => {
     // Prevent negative values for all numeric fields
@@ -257,7 +272,7 @@ const MilkCollections = () => {
       return; // Don't update if negative
     }
     
-    setEditData(prev => ({
+    setEditData((prev: { cow: Record<string, unknown>; buffalo: Record<string, unknown> }) => ({
       ...prev,
       [milkType]: {
         ...prev[milkType],
@@ -463,7 +478,7 @@ const MilkCollections = () => {
     setShowViewModal(true);
   };
 
-  const calculateTotal = (fat: number, snf: number, rate: number, weight: number) => {
+  const calculateTotal = (_fat: number, _snf: number, rate: number, weight: number) => {
     // Simple calculation: (weight * rate) / 100
     return ((weight * rate) / 100).toFixed(2);
   };

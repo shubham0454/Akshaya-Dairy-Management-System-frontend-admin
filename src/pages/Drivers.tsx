@@ -8,12 +8,10 @@ import {
   Modal, 
   Form, 
   Row, 
-  Col,
-  Dropdown
+  Col
 } from 'react-bootstrap';
-import { FiPlus, FiEdit, FiPower, FiUserX, FiUserCheck, FiTruck, FiMapPin, FiEye } from 'react-icons/fi';
+import { FiPlus, FiEdit, FiMapPin, FiEye } from 'react-icons/fi';
 import { toast } from 'react-toastify';
-import Pagination from 'react-bootstrap/Pagination';
 
 interface Driver {
   id: string;
@@ -44,7 +42,7 @@ interface Driver {
 
 const Drivers = () => {
   const [drivers, setDrivers] = useState<Driver[]>([]);
-  const [allDrivers, setAllDrivers] = useState<Driver[]>([]);
+  const [_allDrivers, setAllDrivers] = useState<Driver[]>([]);
   const [centers, setCenters] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -54,7 +52,7 @@ const Drivers = () => {
   const [selectedDriver, setSelectedDriver] = useState<Driver | null>(null);
   const [locationDriver, setLocationDriver] = useState<Driver | null>(null);
   const [detailsDriver, setDetailsDriver] = useState<Driver | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, _setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   const [formData, setFormData] = useState({
     mobile_no: '',
@@ -170,13 +168,11 @@ const Drivers = () => {
     if (!selectedDriver) return;
     try {
       const updateData = { ...formData };
-      if (!updateData.password) {
-        delete updateData.password;
-      }
-      await axios.put(`/driver-admin/${selectedDriver.id}`, {
-        ...updateData,
-        salary_per_month: updateData.salary_per_month ? parseFloat(updateData.salary_per_month) : undefined,
-      });
+      const { password, ...rest } = updateData;
+      const payload = password
+        ? { ...updateData, salary_per_month: updateData.salary_per_month ? parseFloat(updateData.salary_per_month) : undefined }
+        : { ...rest, salary_per_month: updateData.salary_per_month ? parseFloat(updateData.salary_per_month) : undefined };
+      await axios.put(`/driver-admin/${selectedDriver.id}`, payload);
       toast.success('Driver updated successfully!');
       setShowEditModal(false);
       resetForm();
@@ -186,7 +182,7 @@ const Drivers = () => {
     }
   };
 
-  const handleToggleDuty = async (id: string, currentStatus: boolean) => {
+  const handleToggleDuty = async (id: string, _currentStatus: boolean) => {
     try {
       await axios.patch(`/driver-admin/${id}/toggle-duty`);
       toast.success('Duty status updated!');
@@ -200,6 +196,7 @@ const Drivers = () => {
     setLocationDriver(driver);
     setShowLocationModal(true);
   };
+  void handleViewLocation;
 
   const handleViewDetails = async (driver: Driver) => {
     setDetailsDriver(driver);
@@ -224,10 +221,10 @@ const Drivers = () => {
     }
   };
 
-  const handleToggleStatus = async (id: string, currentStatus: boolean) => {
+  const handleToggleStatus = async (id: string, _currentStatus: boolean) => {
     try {
       await axios.patch(`/driver-admin/${id}/toggle-status`);
-      toast.success(`Driver ${!currentStatus ? 'activated' : 'deactivated'}!`);
+      toast.success(`Driver ${!_currentStatus ? 'activated' : 'deactivated'}!`);
       // Refresh drivers list to get updated status
       await fetchDrivers();
     } catch (error: any) {
@@ -246,7 +243,7 @@ const Drivers = () => {
       toast.error(error.response?.data?.message || 'Failed to assign center');
     }
   };
-
+  void handleAssignCenter;
 
   const resetForm = () => {
     setFormData({
@@ -327,9 +324,9 @@ const Drivers = () => {
                         border: '1px solid #E5E7EB'
                       }}
                     >
-                      {driver.centers_count || 0} {driver.centers_count === 1 ? 'Center' : 'Centers'}
+                      {driver.centers_count ?? 0} {(driver.centers_count ?? 0) === 1 ? 'Center' : 'Centers'}
                     </Badge>
-                    {driver.centers_count > 0 && (
+                    {(driver.centers_count ?? 0) > 0 && (
                       <small className="d-block text-muted mt-1">
                         {driver.center_number || driver.center_name || 'Unassigned'}
                       </small>

@@ -152,12 +152,12 @@ export const generateDriverPaymentPDF = (data: {
   yPos += 10;
   
   doc.setFontSize(12);
-  doc.setFont(undefined, 'bold');
+  doc.setFont('helvetica', 'bold');
   doc.text(`Final Amount: ₹${data.finalAmount.toFixed(2)}`, 14, yPos);
   
-  const fileName = data.paymentCode ? 
-    `driver-payment-${data.paymentCode}.pdf` :
-    `driver-payment-${data.driverName}-${data.startDate}-${data.endDate}.pdf`;
+  const fileName = data.paymentCode
+    ? `driver-payment-${data.paymentCode}.pdf`
+    : `driver-payment-${data.driverName ?? 'driver'}-${data.startDate}-${data.endDate}.pdf`;
   doc.save(fileName);
 };
 
@@ -200,7 +200,7 @@ export const generateCenterPaymentPDF = (data: {
   yPos += 10;
   
   doc.setFontSize(12);
-  doc.setFont(undefined, 'bold');
+  doc.setFont('helvetica', 'bold');
   doc.text(`Final Amount: ₹${data.finalAmount.toFixed(2)}`, 14, yPos);
   
   // Collections table if provided

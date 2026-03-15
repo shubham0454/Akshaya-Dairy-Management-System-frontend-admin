@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from 'react-bootstrap';
 import { FiGift } from 'react-icons/fi';
 

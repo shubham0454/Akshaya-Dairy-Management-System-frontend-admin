@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Card, Row, Col, Spinner, Button, Table, Form } from 'react-bootstrap';
-import { FiDroplet, FiUsers, FiTruck, FiDollarSign, FiDownload, FiArrowRight } from 'react-icons/fi';
+import { FiDroplet, FiDownload, FiArrowRight } from 'react-icons/fi';
 import { generateMilkCollectionPDF, generateCenterReportPDF, generateDriverPaymentPDF } from '../utils/pdfGenerator';
 import { format } from 'date-fns';
 import { toast } from 'react-toastify';
@@ -366,7 +366,7 @@ const Dashboard = () => {
     });
   };
 
-  const dailyChartData = processDailyData();
+  void processDailyData();
 
   // Process data for weekly chart
   const processWeeklyData = () => {
