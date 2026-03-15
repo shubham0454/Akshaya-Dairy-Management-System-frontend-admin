@@ -1,0 +1,555 @@
+/* ============================================
+   AZIA ADMIN PANEL - PROFESSIONAL MINIMAL DESIGN
+   Mostly White & Black with Strategic Color Accents
+   ============================================ */
+
+:root {
+  /* ========== PRIMARY COLORS (Use Sparingly) ========== */
+  --primary-purple: #6F42C1;
+  --primary-cyan: #007BFF;
+  --support-cyan-light: #00CCCC;
+  --support-cyan-medium: #0DCAF0;
+  --support-cyan-dark: #17A2B8;
+  
+  /* ========== NEUTRAL COLORS (Primary Usage) ========== */
+  --bg-white: #FFFFFF;
+  --bg-light: #F8F9FA;
+  --bg-gray: #F5F5F5;
+  
+  /* ========== TEXT COLORS (Black & Gray) ========== */
+  --text-primary: #1E2329;
+  --text-secondary: #6C757D;
+  --text-muted: #9CA3AF;
+  --text-light: #ADB5BD;
+  --text-white: #FFFFFF;
+  
+  /* ========== BORDER COLORS ========== */
+  --border-light: #E5E7EB;
+  --border-medium: #D1D5DB;
+  
+  /* ========== SHADOWS (Subtle) ========== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+  /* ========== HOVER STATES ========== */
+  --primary-purple-hover: #5A35A1;
+  --primary-cyan-hover: #0056b3;
+  
+  /* ========== FONT FAMILY ========== */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ============================================
+   GLOBAL STYLES - Clean & Minimal
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   PRIMARY BUTTONS - Purple (Main Actions Only)
+   ============================================ */
+
+.btn-primary {
+  background-color: var(--primary-purple);
+  border-color: var(--primary-purple);
+  color: var(--text-white);
+  font-weight: 500;
+  transition: all 0.2s;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-purple-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--bg-light);
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   SECONDARY BUTTONS - Neutral (Most Buttons)
+   ============================================ */
+
+.btn-secondary,
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: all 0.2s;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover,
+.btn-outline:hover {
+  background-color: var(--bg-gray);
+  border-color: var(--border-medium);
+}
+
+/* ============================================
+   INFO BUTTONS - Cyan (Secondary Actions)
+   ============================================ */
+
+.btn-info {
+  background-color: var(--primary-cyan);
+  border-color: var(--primary-cyan);
+  color: var(--text-white);
+  font-weight: 500;
+  transition: all 0.2s;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-info:hover {
+  background-color: var(--primary-cyan-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline-info {
+  background-color: transparent;
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+}
+
+.btn-outline-info:hover {
+  background-color: var(--bg-light);
+}
+
+/* ============================================
+   SUCCESS BUTTONS - Cyan Light (Success States Only)
+   ============================================ */
+
+.btn-success {
+  background-color: var(--support-cyan-light);
+  border-color: var(--support-cyan-light);
+  color: var(--text-white);
+  font-weight: 500;
+  transition: all 0.2s;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-success:hover {
+  background-color: #00b3b3;
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   BADGES - Minimal Color Usage
+   ============================================ */
+
+.badge {
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Most badges are neutral */
+.badge-primary,
+.bg-primary {
+  background-color: var(--text-primary) !important;
+  color: var(--text-white) !important;
+}
+
+/* Only use colors for status indicators */
+.badge-info,
+.bg-info {
+  background-color: var(--primary-cyan) !important;
+  color: var(--text-white) !important;
+}
+
+.badge-success,
+.bg-success {
+  background-color: var(--support-cyan-light) !important;
+  color: var(--text-white) !important;
+}
+
+.badge-secondary,
+.bg-secondary {
+  background-color: var(--text-secondary) !important;
+  color: var(--text-white) !important;
+}
+
+/* ============================================
+   TEXT COLORS - Mostly Black & Gray
+   ============================================ */
+
+.text-primary {
+  color: var(--text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-light {
+  color: var(--text-light) !important;
+}
+
+/* Color text only for important elements */
+.text-purple {
+  color: var(--primary-purple) !important;
+}
+
+.text-cyan {
+  color: var(--primary-cyan) !important;
+}
+
+/* ============================================
+   CARDS - Clean White Background
+   ============================================ */
+
+.card {
+  background-color: var(--bg-white);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+  border: 1px solid var(--border-light);
+  transition: all 0.2s;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-header {
+  background-color: var(--bg-white);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-light);
+  padding: 16px 24px;
+  margin: -24px -24px 20px -24px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Only use colored headers for important sections */
+.card-header-primary {
+  background-color: var(--primary-purple);
+  color: var(--text-white);
+  border-bottom: none;
+}
+
+/* ============================================
+   TABLES - Clean & Minimal
+   ============================================ */
+
+.table {
+  background-color: var(--bg-white);
+  color: var(--text-primary);
+}
+
+.table thead th {
+  background-color: var(--bg-gray);
+  color: var(--text-primary);
+  font-weight: 600;
+  border: none;
+  padding: 12px;
+  font-size: 13px;
+  border-bottom: 2px solid var(--border-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 11px;
+}
+
+/* Only use colored headers for main tables */
+.table thead th.table-header-primary {
+  background-color: var(--primary-purple);
+  color: var(--text-white);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > td {
+  background-color: var(--bg-light);
+}
+
+.table-hover > tbody > tr:hover > td {
+  background-color: var(--bg-gray);
+}
+
+.table-bordered {
+  border-color: var(--border-light);
+}
+
+.table-bordered th,
+.table-bordered td {
+  border-color: var(--border-light);
+}
+
+.table td {
+  color: var(--text-primary);
+  padding: 12px;
+}
+
+/* ============================================
+   ALERTS - Subtle Backgrounds
+   ============================================ */
+
+.alert {
+  border-radius: 6px;
+  padding: 12px 16px;
+  border: 1px solid;
+}
+
+.alert-primary {
+  background-color: rgba(111, 66, 193, 0.05);
+  border-color: var(--border-light);
+  color: var(--text-primary);
+}
+
+.alert-info {
+  background-color: rgba(0, 123, 255, 0.05);
+  border-color: var(--border-light);
+  color: var(--text-primary);
+}
+
+.alert-success {
+  background-color: rgba(0, 204, 204, 0.05);
+  border-color: var(--border-light);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   FORMS - Clean Borders
+   ============================================ */
+
+.form-control {
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+}
+
+.form-control:focus {
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.1);
+  outline: none;
+}
+
+.form-select:focus {
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.1);
+  outline: none;
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-purple);
+  border-color: var(--primary-purple);
+}
+
+.form-check-input:focus {
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.1);
+}
+
+/* ============================================
+   MODALS - Clean Design
+   ============================================ */
+
+.modal-header {
+  background-color: var(--bg-white);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-light);
+  padding: 20px 24px;
+}
+
+.modal-header-primary {
+  background-color: var(--primary-purple);
+  color: var(--text-white);
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: 1px solid var(--border-light);
+  background-color: var(--bg-light);
+}
+
+/* ============================================
+   NAVIGATION / SIDEBAR - Minimal
+   ============================================ */
+
+.nav-sidebar {
+  background-color: var(--bg-white);
+  border-right: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+}
+
+.nav-link.active {
+  background-color: var(--bg-gray);
+  color: var(--primary-purple);
+  font-weight: 600;
+}
+
+/* ============================================
+   SCROLLBAR - Subtle
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.bg-white {
+  background-color: var(--bg-white) !important;
+}
+
+.bg-light {
+  background-color: var(--bg-light) !important;
+}
+
+.bg-gray {
+  background-color: var(--bg-gray) !important;
+}
+
+.border-light {
+  border-color: var(--border-light) !important;
+}
+
+.border-medium {
+  border-color: var(--border-medium) !important;
+}
+
+.shadow-sm {
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.shadow-md {
+  box-shadow: var(--shadow-md) !important;
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* ============================================
+   BUTTON BASE STYLES
+   ============================================ */
+
+.btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+  font-family: var(--font-family);
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 1rem;
+    padding: 16px;
+  }
+  
+  .table {
+    font-size: 0.875rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h5 {
+    font-size: 1.1rem;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .btn,
+  nav,
+  .modal {
+    display: none !important;
+  }
+  
+  .card {
+    box-shadow: none;
+    border: 1px solid var(--border-medium);
+  }
+}
