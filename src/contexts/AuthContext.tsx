@@ -40,8 +40,11 @@ export const useAuth = () => {
   return context;
 };
 
-// Use relative URL to leverage Vite proxy (bypasses CORS)
-axios.defaults.baseURL = '/api';
+// Backend API: production uses Vercel backend; dev uses Vite proxy
+const API_BASE =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV ? '/api' : 'https://akshaya-dairy-management-system-bac.vercel.app');
+axios.defaults.baseURL = API_BASE;
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
