@@ -40,10 +40,12 @@ export const useAuth = () => {
   return context;
 };
 
-// Backend API: production uses Vercel backend; dev uses Vite proxy
+// Backend API: must point to backend (bac.vercel.app), not frontend (fro.vercel.app).
+// Swagger uses /api prefix: https://akshaya-dairy-management-system-bac.vercel.app/api-docs
+const PRODUCTION_API_BASE = 'https://akshaya-dairy-management-system-bac.vercel.app/api';
 const API_BASE =
   import.meta.env.VITE_API_BASE_URL ||
-  (import.meta.env.DEV ? '/api' : 'https://akshaya-dairy-management-system-bac.vercel.app');
+  (import.meta.env.PROD ? PRODUCTION_API_BASE : '/api');
 axios.defaults.baseURL = API_BASE;
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
