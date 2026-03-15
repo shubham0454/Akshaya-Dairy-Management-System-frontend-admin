@@ -23,3 +23,57 @@ body {
 .recharts-wrapper {
   border-radius: 8px;
 }
+
+/* ========== Responsive: full site ========== */
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Responsive tables: horizontal scroll on small screens */
+.table-responsive-custom {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@media (max-width: 767.98px) {
+  .table-responsive-custom table {
+    min-width: 600px;
+  }
+}
+
+/* Containers: prevent overflow on mobile */
+main .container,
+main .container-fluid {
+  max-width: 100%;
+}
+
+/* Cards and forms: full width on small screens */
+@media (max-width: 575.98px) {
+  .card-body {
+    padding: 1rem !important;
+  }
+  .btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Layout: sidebar fixed overlay on mobile when open */
+@media (max-width: 767.98px) {
+  .layout-sidebar-mobile-open {
+    position: fixed !important;
+    left: 0;
+    top: 60px;
+    bottom: 0;
+    height: calc(100vh - 60px) !important;
+  }
+}
+@media (min-width: 768px) {
+  .layout-sidebar-mobile-open {
+    position: relative;
+  }
+}

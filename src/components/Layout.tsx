@@ -172,15 +172,14 @@ const Layout = () => {
       </header>
 
       <div className="d-flex flex-grow-1" style={{ overflow: 'hidden' }}>
-        {/* Sidebar - Azia Style */}
+        {/* Sidebar - Azia Style (fixed overlay on mobile when open) */}
         <nav
-          className={`p-3 h-100 ${
-            mobileMenuOpen ? 'd-block' : 'd-none'
-          } d-md-block`}
+          className={`p-3 h-100 ${mobileMenuOpen ? 'd-block layout-sidebar-mobile-open' : 'd-none'} d-md-block`}
           style={{
             width: '250px',
+            minWidth: '250px',
             minHeight: 'calc(100vh - 60px)',
-            zIndex: 1020,
+            zIndex: 1025,
             transition: 'transform 0.3s ease',
             boxShadow: '2px 0 10px rgba(0, 0, 0, 0.05)',
             backgroundColor: '#FFFFFF',

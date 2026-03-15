@@ -265,7 +265,7 @@ const Payments = () => {
         ) : (
           <div className="card border-0 shadow-sm">
             <div className="card-body p-0">
-              <Table striped hover className="mb-0">
+              <Table striped hover responsive className="mb-0">
                 <thead>
                   <tr>
                     <th style={{ backgroundColor: '#F5F5F5', color: '#1E2329', fontWeight: 600 }}>Payment Code</th>

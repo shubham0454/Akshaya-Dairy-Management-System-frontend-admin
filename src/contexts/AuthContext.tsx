@@ -12,10 +12,20 @@ interface User {
   last_name?: string;
 }
 
+export interface RegisterData {
+  first_name: string;
+  last_name: string;
+  mobile_no: string;
+  email?: string;
+  password: string;
+  role: 'admin' | 'driver' | 'vendor';
+}
+
 interface AuthContextType {
   user: User | null;
   token: string | null;
   login: (mobileOrEmail: string, password: string) => Promise<void>;
+  register: (data: RegisterData) => Promise<void>;
   logout: () => void;
   loading: boolean;
 }
@@ -78,6 +88,23 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  const register = async (data: RegisterData) => {
+    try {
+      const response = await axios.post('/auth/register', data);
+      const { user: userData, token: newToken } = response.data.data;
+      
+      setUser(userData);
+      setToken(newToken);
+      localStorage.setItem('token', newToken);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+      
+      toast.success('Registration successful!');
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || 'Registration failed');
+      throw error;
+    }
+  };
+
   const logout = () => {
     setUser(null);
     setToken(null);
@@ -87,7 +114,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, token, login, register, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

@@ -245,7 +245,7 @@ const DairyCenters = () => {
 
       <div className="card border-0 shadow-sm">
         <div className="card-body p-0">
-          <Table striped hover className="mb-0">
+          <Table striped hover responsive className="mb-0">
             <thead>
               <tr>
                 <th style={{ backgroundColor: '#F5F5F5', color: '#1E2329', fontWeight: 600 }}>Center Name</th>
@@ -857,7 +857,7 @@ const DairyCenters = () => {
                   </div>
                 ) : milkCollections.length > 0 ? (
                   <div className="table-responsive" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-                    <Table striped bordered hover size="sm">
+                    <Table striped bordered hover size="sm" responsive>
                       <thead style={{ position: 'sticky', top: 0, backgroundColor: 'white', zIndex: 1 }}>
                         <tr>
                           <th>Date</th>

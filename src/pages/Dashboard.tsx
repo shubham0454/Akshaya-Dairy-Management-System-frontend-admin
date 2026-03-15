@@ -859,7 +859,7 @@ const Dashboard = () => {
                 <strong className="text-primary">Total: {(Number(morningTotal) || 0).toFixed(2)} kg</strong>
               </div>
               <div className="table-responsive">
-                <Table striped hover className="mb-0">
+                <Table striped hover responsive className="mb-0">
                 <thead>
                   <tr>
                     <th>Center Name</th>
@@ -931,7 +931,7 @@ const Dashboard = () => {
                 <strong className="text-info">Total: {(Number(eveningTotal) || 0).toFixed(2)} kg</strong>
               </div>
               <div className="table-responsive">
-                <Table striped hover className="mb-0">
+                <Table striped hover responsive className="mb-0">
                 <thead>
                   <tr>
                     <th>Center Name</th>
