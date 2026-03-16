@@ -18,7 +18,6 @@ import AddCollection from './pages/AddCollection';
 import Layout from './components/Layout';
 
 function App() {
-  console.log('App component rendering');
   return (
     <AuthProvider>
       <Router>

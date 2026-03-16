@@ -722,6 +722,51 @@ const Drivers = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleUpdate}>
+            {selectedDriver && (
+              <Row className="mb-3">
+                <Col md={6}>
+                  <Form.Group>
+                    <Form.Label className="text-muted small">Driver ID (read-only)</Form.Label>
+                    <Form.Control type="text" value={selectedDriver.id} readOnly disabled className="bg-light" />
+                  </Form.Group>
+                </Col>
+                {selectedDriver.driver_id && (
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label className="text-muted small">User ID (read-only)</Form.Label>
+                      <Form.Control type="text" value={selectedDriver.driver_id} readOnly disabled className="bg-light" />
+                    </Form.Group>
+                  </Col>
+                )}
+              </Row>
+            )}
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Mobile Number *</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={formData.mobile_no}
+                    onChange={(e) => setFormData({ ...formData, mobile_no: e.target.value })}
+                    required
+                    readOnly
+                    disabled
+                    className="bg-light"
+                    title="Mobile cannot be changed"
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">

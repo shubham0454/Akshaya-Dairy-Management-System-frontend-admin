@@ -737,7 +737,7 @@ const MilkPrice = () => {
 
             updates.push(
               axios.post('/milk/collections', {
-                vendor_id: collectionForm.center_id,
+                center_id: collectionForm.center_id,
                 collection_date: collectionForm.collection_date,
                 collection_time: collectionForm.collection_time,
                 milk_type: 'cow',
@@ -745,21 +745,16 @@ const MilkPrice = () => {
                 fat_percentage: parseFloat(collectionForm.cow.fat_percentage),
                 snf_percentage: parseFloat(collectionForm.cow.snf_percentage),
                 rate_per_liter: finalRate,
-                base_value: basePrice,
-                net_price: collectionForm.cow.net_price ? parseFloat(collectionForm.cow.net_price) : null,
-                total_amount: Math.round(totalAmount * 100) / 100,
               })
             );
           }
         } catch (error) {
-          // Fallback if price config not found
           const basePrice = parseFloat(collectionForm.cow.base_price) || 0;
           const finalRate = collectionForm.cow.net_price ? parseFloat(collectionForm.cow.net_price) : basePrice;
-          const totalAmount = (parseFloat(collectionForm.cow.milk_weight) * finalRate) / 100;
 
           updates.push(
             axios.post('/milk/collections', {
-              vendor_id: collectionForm.center_id,
+              center_id: collectionForm.center_id,
               collection_date: collectionForm.collection_date,
               collection_time: collectionForm.collection_time,
               milk_type: 'cow',
@@ -767,9 +762,6 @@ const MilkPrice = () => {
               fat_percentage: parseFloat(collectionForm.cow.fat_percentage),
               snf_percentage: parseFloat(collectionForm.cow.snf_percentage),
               rate_per_liter: finalRate,
-              base_value: basePrice,
-              net_price: collectionForm.cow.net_price ? parseFloat(collectionForm.cow.net_price) : null,
-              total_amount: Math.round(totalAmount * 100) / 100,
             })
           );
         }
@@ -795,7 +787,7 @@ const MilkPrice = () => {
 
             updates.push(
               axios.post('/milk/collections', {
-                vendor_id: collectionForm.center_id,
+                center_id: collectionForm.center_id,
                 collection_date: collectionForm.collection_date,
                 collection_time: collectionForm.collection_time,
                 milk_type: 'buffalo',
@@ -803,20 +795,16 @@ const MilkPrice = () => {
                 fat_percentage: parseFloat(collectionForm.buffalo.fat_percentage),
                 snf_percentage: parseFloat(collectionForm.buffalo.snf_percentage),
                 rate_per_liter: finalRate,
-                base_value: basePrice,
-                net_price: collectionForm.buffalo.net_price ? parseFloat(collectionForm.buffalo.net_price) : null,
-                total_amount: Math.round(totalAmount * 100) / 100,
               })
             );
           }
         } catch (error) {
           const basePrice = parseFloat(collectionForm.buffalo.base_price) || 0;
           const finalRate = collectionForm.buffalo.net_price ? parseFloat(collectionForm.buffalo.net_price) : basePrice;
-          const totalAmount = (parseFloat(collectionForm.buffalo.milk_weight) * finalRate) / 100;
 
           updates.push(
             axios.post('/milk/collections', {
-              vendor_id: collectionForm.center_id,
+              center_id: collectionForm.center_id,
               collection_date: collectionForm.collection_date,
               collection_time: collectionForm.collection_time,
               milk_type: 'buffalo',
@@ -824,9 +812,6 @@ const MilkPrice = () => {
               fat_percentage: parseFloat(collectionForm.buffalo.fat_percentage),
               snf_percentage: parseFloat(collectionForm.buffalo.snf_percentage),
               rate_per_liter: finalRate,
-              base_value: basePrice,
-              net_price: collectionForm.buffalo.net_price ? parseFloat(collectionForm.buffalo.net_price) : null,
-              total_amount: Math.round(totalAmount * 100) / 100,
             })
           );
         }
@@ -1031,7 +1016,7 @@ const MilkPrice = () => {
                 />
               </Form.Group>
             </Col>
-            <Col md={6}>
+            <Col md={4}>
               <Form.Group>
                 <Form.Label>Collection Time</Form.Label>
                 <Form.Select
@@ -1042,6 +1027,16 @@ const MilkPrice = () => {
                   <option value="evening">Evening</option>
                 </Form.Select>
               </Form.Group>
+            </Col>
+            <Col md={2} className="d-flex align-items-end pb-2">
+              <Button
+                variant="outline-primary"
+                size="sm"
+                onClick={() => fetchExistingCollections()}
+                title="Load existing collections for this date and time"
+              >
+                Load existing
+              </Button>
             </Col>
           </Row>
         </Card.Body>

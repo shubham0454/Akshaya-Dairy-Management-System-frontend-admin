@@ -349,7 +349,7 @@ const MilkCollections = () => {
             const snfDiff = parseFloat(editData.cow.snf_percentage) - (priceConfig.base_snf || 0);
             const calculatedRate = newBasePrice + (fatDiff * priceConfig.fat_rate) + (snfDiff * priceConfig.snf_rate) + (priceConfig.bonus || 0);
             const finalRate = editData.cow.net_price ? parseFloat(editData.cow.net_price) : calculatedRate;
-            const newTotal = (parseFloat(editData.cow.milk_weight) * finalRate) / 100;
+            const newTotal = Math.round((parseFloat(editData.cow.milk_weight) * finalRate) * 100) / 100;
 
             updates.push(
               axios.patch(`/milk/collections/${cowId}`, {
@@ -357,7 +357,7 @@ const MilkCollections = () => {
                 snf_percentage: parseFloat(editData.cow.snf_percentage),
                 milk_weight: parseFloat(editData.cow.milk_weight),
                 rate_per_liter: finalRate,
-                total_amount: Math.round(newTotal * 100) / 100,
+                total_amount: newTotal,
                 base_value: newBasePrice,
                 net_price: editData.cow.net_price ? parseFloat(editData.cow.net_price) : null,
                 old_base_price: currentBasePrice !== newBasePrice ? currentBasePrice : cowData.old_base_price,
@@ -370,7 +370,7 @@ const MilkCollections = () => {
           }
         } catch (error) {
           const finalRate = editData.cow.net_price ? parseFloat(editData.cow.net_price) : newBasePrice;
-          const newTotal = (parseFloat(editData.cow.milk_weight) * finalRate) / 100;
+          const newTotal = Math.round((parseFloat(editData.cow.milk_weight) * finalRate) * 100) / 100;
           
           updates.push(
             axios.patch(`/milk/collections/${cowId}`, {
@@ -378,7 +378,7 @@ const MilkCollections = () => {
               snf_percentage: parseFloat(editData.cow.snf_percentage),
               milk_weight: parseFloat(editData.cow.milk_weight),
               rate_per_liter: finalRate,
-              total_amount: Math.round(newTotal * 100) / 100,
+              total_amount: newTotal,
               base_value: newBasePrice,
               net_price: editData.cow.net_price ? parseFloat(editData.cow.net_price) : null,
               quality_notes: comments,
@@ -418,7 +418,7 @@ const MilkCollections = () => {
             const snfDiff = parseFloat(editData.buffalo.snf_percentage) - (priceConfig.base_snf || 0);
             const calculatedRate = newBasePrice + (fatDiff * priceConfig.fat_rate) + (snfDiff * priceConfig.snf_rate) + (priceConfig.bonus || 0);
             const finalRate = editData.buffalo.net_price ? parseFloat(editData.buffalo.net_price) : calculatedRate;
-            const newTotal = (parseFloat(editData.buffalo.milk_weight) * finalRate) / 100;
+            const newTotal = Math.round((parseFloat(editData.buffalo.milk_weight) * finalRate) * 100) / 100;
 
             updates.push(
               axios.patch(`/milk/collections/${buffaloId}`, {
@@ -426,7 +426,7 @@ const MilkCollections = () => {
                 snf_percentage: parseFloat(editData.buffalo.snf_percentage),
                 milk_weight: parseFloat(editData.buffalo.milk_weight),
                 rate_per_liter: finalRate,
-                total_amount: Math.round(newTotal * 100) / 100,
+                total_amount: newTotal,
                 base_value: newBasePrice,
                 net_price: editData.buffalo.net_price ? parseFloat(editData.buffalo.net_price) : null,
                 old_base_price: currentBasePrice !== newBasePrice ? currentBasePrice : buffaloData.old_base_price,
@@ -439,7 +439,7 @@ const MilkCollections = () => {
           }
         } catch (error) {
           const finalRate = editData.buffalo.net_price ? parseFloat(editData.buffalo.net_price) : newBasePrice;
-          const newTotal = (parseFloat(editData.buffalo.milk_weight) * finalRate) / 100;
+          const newTotal = Math.round((parseFloat(editData.buffalo.milk_weight) * finalRate) * 100) / 100;
           
           updates.push(
             axios.patch(`/milk/collections/${buffaloId}`, {
@@ -447,7 +447,7 @@ const MilkCollections = () => {
               snf_percentage: parseFloat(editData.buffalo.snf_percentage),
               milk_weight: parseFloat(editData.buffalo.milk_weight),
               rate_per_liter: finalRate,
-              total_amount: Math.round(newTotal * 100) / 100,
+              total_amount: newTotal,
               base_value: newBasePrice,
               net_price: editData.buffalo.net_price ? parseFloat(editData.buffalo.net_price) : null,
               quality_notes: comments,
@@ -985,13 +985,16 @@ const MilkCollections = () => {
             <div>
               <Row className="mb-3">
                 <Col md={6}>
-                  <p><strong>Center:</strong> {editGroup.center_name}</p>
-                  <p><strong>Date:</strong> {format(new Date(editGroup.collection_date), 'dd/MM/yyyy')}</p>
-                  <p><strong>Time:</strong> 
+                  <p className="text-muted small mb-0">Center (read-only)</p>
+                  <p><strong>{editGroup.center_name}</strong></p>
+                  <p className="text-muted small mb-0">Date (read-only)</p>
+                  <p><strong>{format(new Date(editGroup.collection_date), 'dd/MM/yyyy')}</strong></p>
+                  <p className="text-muted small mb-0">Time (read-only)</p>
+                  <p><strong>
                     <Badge bg={editGroup.collection_time === 'morning' ? 'success' : 'info'} className="ms-2">
                       {editGroup.collection_time}
                     </Badge>
-                  </p>
+                  </strong></p>
                   {/* Status - Commented out */}
                   {/* <p><strong>Status:</strong> 
                     <Badge bg={

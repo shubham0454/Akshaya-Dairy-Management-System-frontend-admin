@@ -15,7 +15,8 @@ import {
   FiBarChart2,
   FiGift,
   FiMinus,
-  FiCreditCard
+  FiCreditCard,
+  FiDollarSign
 } from 'react-icons/fi';
 
 const Layout = () => {
@@ -28,14 +29,16 @@ const Layout = () => {
   const menuItems = [
     { path: '/dashboard', label: 'Dashboard', icon: FiHome },
     { path: '/collections', label: 'Show Collection', icon: FiDroplet },
+    { path: '/add-collection', label: 'Add Collection', icon: FiPlus },
+    { path: '/milk-price', label: 'Milk Price & Collection', icon: FiDroplet },
     { path: '/centers', label: 'Center', icon: FiUsers },
+    { path: '/drivers', label: 'Driver', icon: FiTruck },
+    { path: '/payments', label: 'Payments', icon: FiDollarSign },
     { path: '/advance', label: 'Advance', icon: FiCreditCard },
     { path: '/deduction', label: 'Deduction', icon: FiMinus },
     { path: '/invoices', label: 'Invoices', icon: FiFileText },
     { path: '/rate-chart', label: 'Rate Chart', icon: FiBarChart2 },
     { path: '/annual-bonus', label: 'Annual Bonus', icon: FiGift },
-    { path: '/add-collection', label: 'Add Collection', icon: FiPlus },
-    { path: '/drivers', label: 'Driver', icon: FiTruck },
   ];
 
   // Close dropdown when clicking outside
@@ -122,7 +125,7 @@ const Layout = () => {
                 <div className="fw-bold" style={{ color: '#1E2329' }}>
                   {user?.first_name} {user?.last_name}
                 </div>
-                <div className="small text-muted">{user?.email || user?.mobile}</div>
+                <div className="small text-muted">{user?.email || user?.mobile_no || user?.mobile || 'Admin'}</div>
               </div>
               <div className="py-2">
                 <button

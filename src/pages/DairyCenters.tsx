@@ -144,7 +144,7 @@ const DairyCenters = () => {
     try {
       setLoadingCollections(true);
       const response = await axios.get('/milk/collections', { 
-        params: { vendor_id: center.id, limit: 1000 } 
+        params: { center_id: center.id, limit: 1000 } 
       });
       setMilkCollections(response.data.data || []);
     } catch (error: any) {
@@ -160,7 +160,7 @@ const DairyCenters = () => {
       setLoadingCollections(true);
       const activeFilters = filters || collectionFilters;
       const params: any = {
-        vendor_id: centerId,
+        center_id: centerId,
         limit: 1000,
       };
 
@@ -582,6 +582,24 @@ const DairyCenters = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleUpdate}>
+            {selectedCenter && (
+              <Row className="mb-3">
+                <Col md={6}>
+                  <Form.Group>
+                    <Form.Label className="text-muted small">Center ID (read-only)</Form.Label>
+                    <Form.Control type="text" value={selectedCenter.id} readOnly disabled className="bg-light" />
+                  </Form.Group>
+                </Col>
+                {selectedCenter.qr_code && (
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label className="text-muted small">QR Code (read-only)</Form.Label>
+                      <Form.Control type="text" value={selectedCenter.qr_code} readOnly disabled className="bg-light" />
+                    </Form.Group>
+                  </Col>
+                )}
+              </Row>
+            )}
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
